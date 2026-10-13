@@ -17,7 +17,7 @@
     .nav { min-height:66px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
     .brand { font-size:1.05rem; font-weight:850; letter-spacing:-.035em; }
     .tag { border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:5px 12px; font-size:.78rem; white-space:nowrap; }
-    .hero { display:grid; grid-template-columns:1.5fr .8fr; gap:42px; align-items:center; padding:48px 0 58px; }
+    .hero { display:grid; grid-template-columns:1.5fr .8fr; gap:42px; align-items:center; padding:26px 0 32px; }
     .eyebrow { color:#c9edb0; font-size:.85rem; font-weight:750; letter-spacing:.11em; }
     h1 { margin:10px 0 16px; font-size:clamp(2rem,5vw,3.6rem); letter-spacing:-.07em; line-height:1.16; }
     .hero p { max-width:650px; margin:0; color:#e2efea; font-size:1.04rem; }
@@ -29,6 +29,11 @@
     .steps { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 32px; padding:0; list-style:none; }
     .steps li { background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 16px; color:#40544c; font-size:.9rem; font-weight:700; }
     .steps b { color:#277762; margin-right:6px; }
+    .workspace-grid { display:grid; grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:22px; align-items:start; }
+    .workspace-grid > section { margin-top:0; min-width:0; }
+    .workspace-grid .foods { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .workspace-grid .food { min-height:68px; }
+    .workspace-grid .section-head { min-height:66px; }
     section { margin-top:38px; }
     .section-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:16px; }
     h2 { margin:0; font-size:1.55rem; letter-spacing:-.045em; }
@@ -43,9 +48,6 @@
     .food:hover { transform:translateY(-2px); border-color:#81c49e; box-shadow:var(--shadow); }
     .food[aria-pressed="true"] { background:#e8f7eb; border-color:#2b816d; box-shadow:inset 0 0 0 1px #2b816d; }
     .food .emoji { font-size:1.55rem; line-height:1; }
-    .other { margin-top:15px; border:1px dashed #9eb9aa; border-radius:15px; padding:16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:#eff7f0; }
-    .other label { font-weight:750; }
-    .other input { flex:1; min-width:180px; }
     .primary { border:0; border-radius:13px; background:#166756; color:white; padding:12px 18px; font-weight:750; }
     .primary:hover { background:#0d4e42; }
     .card { background:white; border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); padding:26px; }
@@ -74,6 +76,29 @@
     .add-ingredient input { flex:1; min-width:150px; }
     .add-ingredient button { border:1px solid #247963; background:white; color:#145e4d; border-radius:11px; padding:11px 15px; font-weight:750; }
     .add-ingredient button:hover { background:#eaf7ed; }
+    .worksheet-table { width:100%; border-collapse:collapse; margin:18px 0 0; text-align:left; }
+    .worksheet-table th { background:#e9f3eb; color:#285044; font-size:.84rem; padding:11px 12px; }
+    .worksheet-table td { border-bottom:1px solid var(--line); padding:12px; vertical-align:middle; }
+    .worksheet-table tr:last-child td { border-bottom:0; }
+    .worksheet-table tr.not-used { opacity:.43; }
+    .worksheet-table td:first-child { width:62px; text-align:center; }
+    .worksheet-table td:nth-child(2) { width:130px; font-weight:750; }
+    .worksheet-table input[type="checkbox"] { width:19px; height:19px; accent-color:#166756; vertical-align:middle; }
+    .worksheet-table .chip { display:inline-flex; align-items:center; gap:3px; }
+    .worksheet-table .chip input[type="checkbox"] { width:15px; height:15px; }
+    .copy-panel { margin-top:18px; padding:18px; background:#f3f8ed; border-radius:15px; }
+    .copy-panel h4 { margin:0 0 4px; color:#214a3e; font-size:1rem; }
+    .copy-panel p { margin:0; color:#526c59; font-size:.85rem; }
+    .copy-panel ol { margin:10px 0 0; padding-left:23px; columns:2; }
+    .copy-panel li { break-inside:avoid; margin-bottom:4px; }
+    .dictionary-details { border:1px solid var(--line); border-radius:18px; background:white; padding:18px; }
+    .dictionary-details summary { cursor:pointer; font-weight:800; color:#215d4c; }
+    .dictionary-details[open] summary { margin-bottom:15px; }
+    .lookup { width:100%; margin-bottom:14px; }
+    .ingredient-results { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+    .ingredient-fact { border:1px solid var(--line); background:#fff; border-radius:14px; padding:13px; }
+    .ingredient-fact strong { display:block; margin-bottom:6px; }
+    .ingredient-fact .chip { font-size:.75rem; padding:3px 7px; }
     .guide-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
     .guide { padding:18px; border-radius:17px; background:white; border:1px solid var(--line); }
     .guide b { display:block; font-size:1.02rem; margin-bottom:3px; }
@@ -85,10 +110,10 @@
     .work li { margin:7px 0; }
     .caution { margin-top:18px; border-left:4px solid #e7a546; background:#fff8e9; padding:16px 18px; border-radius:0 12px 12px 0; color:#604b29; }
     footer { border-top:1px solid var(--line); color:var(--muted); font-size:.83rem; padding:22px 0 40px; }
-    @media(max-width:850px) { .foods { grid-template-columns:repeat(4,1fr); } .hero { grid-template-columns:1fr .55fr; } }
-    @media(max-width:650px) { .nav { min-height:58px; } .hero { display:block; padding:38px 0 42px; } .hero-art { display:none; } .foods { grid-template-columns:repeat(3,1fr); } .ingredient-list,.work { grid-template-columns:1fr; } .guide-grid { grid-template-columns:repeat(2,1fr); } .card { padding:19px; } }
-    @media(max-width:410px) { .foods { grid-template-columns:repeat(2,1fr); } .guide-grid { grid-template-columns:1fr; } .tag { display:none; } }
-    @media print { .top { color:#000; background:#fff; } .hero-art,.steps,.searchline,.foods,.other,.source-links,footer { display:none; } main { padding:0; } .card,.guide { box-shadow:none; break-inside:avoid; } }
+    @media(max-width:850px) { .workspace-grid { grid-template-columns:1fr; } .workspace-grid .foods { grid-template-columns:repeat(4,1fr); } .ingredient-results { grid-template-columns:repeat(4,1fr); } .hero { grid-template-columns:1fr .55fr; } }
+    @media(max-width:650px) { .nav { min-height:58px; } .hero { display:block; padding:30px 0 32px; } .hero-art { display:none; } .workspace-grid .foods,.ingredient-results { grid-template-columns:repeat(3,1fr); } .ingredient-list,.work { grid-template-columns:1fr; } .guide-grid { grid-template-columns:repeat(2,1fr); } .card { padding:19px; } .copy-panel ol { columns:1; } }
+    @media(max-width:410px) { .workspace-grid .foods,.ingredient-results { grid-template-columns:repeat(2,1fr); } .guide-grid { grid-template-columns:1fr; } .tag { display:none; } }
+    @media print { .top { color:#000; background:#fff; } .hero-art,.steps,.searchline,.foods,.source-links,footer { display:none; } main { padding:0; } .card,.guide { box-shadow:none; break-inside:avoid; } }
   </style>
 </head>
 <body>
@@ -101,15 +126,34 @@
   </header>
   <main class="wrap">
     <ol class="steps"><li><b>01</b>음식 고르기</li><li><b>02</b>재료와 영양소 살펴보기</li><li><b>03</b>활동지에 내 생각 쓰기</li></ol>
+    <div class="workspace-grid">
     <section aria-labelledby="choose-heading">
-      <div class="section-head"><div><h2 id="choose-heading">어떤 음식을 골랐나요?</h2><p class="sub">활동지 1쪽에 나온 음식 24가지예요.</p></div><span id="count" class="count"></span></div>
+      <div class="section-head"><div><h2 id="choose-heading">어떤 음식을 골랐나요?</h2><p class="sub">활동지 1쪽에 나온 음식 24가지 중에서 골라 주세요.</p></div><span id="count" class="count"></span></div>
       <div class="searchline"><input id="search" type="search" placeholder="음식 이름 찾기 (예: 김밥)" aria-label="음식 이름 찾기"></div>
       <div id="foods" class="foods"></div>
-      <form id="custom-form" class="other"><label for="custom">목록에 없나요?</label><input id="custom" type="text" maxlength="30" placeholder="내가 좋아하는 음식 이름 입력"><button class="primary" type="submit">이 음식 조사하기</button></form>
     </section>
     <section aria-labelledby="research-heading">
-      <div class="section-head"><div><h2 id="research-heading">재료를 하나씩 조사해요</h2><p class="sub">재료를 누르면 대표적인 영양소가 나타나요.</p></div></div>
-      <div id="research" class="card empty"><div><span style="font-size:2.3rem">🔎</span><strong>위에서 음식을 먼저 골라 주세요.</strong>고른 음식의 재료를 함께 살펴볼 수 있어요.</div></div>
+      <div class="section-head"><div><h2 id="research-heading">내 음식의 영양소 분석표</h2><p class="sub">처음에는 김밥 예시가 보여요. 다른 음식을 고르면 표가 바뀝니다.</p></div></div>
+      <div id="research" class="card">
+        <div class="selected"><div class="selected-emoji" aria-hidden="true">🍙</div><div><h3>김밥의 재료와 주요 영양소</h3><p>예시 · 다른 음식을 고르면 이 표가 바뀌어요.</p></div></div>
+        <div class="notice">내가 먹는 김밥에 실제로 들어간 재료를 골라 활동지에 적어 보세요.</div>
+        <table class="worksheet-table"><thead><tr><th scope="col">선택</th><th scope="col">재료</th><th scope="col">주요 영양소</th></tr></thead><tbody>
+          <tr><td>✓</td><td>밥</td><td><span class="chip">탄수화물</span></td></tr>
+          <tr><td>✓</td><td>김</td><td><span class="chip">무기질</span> <span class="chip">비타민</span></td></tr>
+          <tr><td>✓</td><td>달걀</td><td><span class="chip">단백질</span> <span class="chip">지방</span></td></tr>
+          <tr><td>✓</td><td>당근</td><td><span class="chip">비타민</span> <span class="chip">무기질</span> <span class="chip">물</span></td></tr>
+          <tr><td>✓</td><td>오이</td><td><span class="chip">비타민</span> <span class="chip">무기질</span> <span class="chip">물</span></td></tr>
+        </tbody></table>
+      </div>
+    </section>
+    </div>
+    <section aria-labelledby="dictionary-heading">
+      <div class="section-head"><div><h2 id="dictionary-heading">다른 재료도 궁금한가요?</h2><p class="sub">필요할 때 재료 사전을 펼쳐 찾아보세요.</p></div></div>
+      <details class="dictionary-details" id="dictionary-details"><summary>재료 사전 열기 · 60가지</summary>
+        <p class="small">재료 이름을 검색하면 대표 영양소가 보여요. 실제 함량을 비교하는 표는 아니에요.</p>
+        <input id="ingredient-search" class="lookup" type="search" placeholder="재료 검색 (예: 달걀, 감자, 우유)" aria-label="재료 이름 검색">
+        <span id="ingredient-count" class="count"></span><div id="ingredient-results" class="ingredient-results"></div>
+      </details>
     </section>
     <section aria-labelledby="guide-heading">
       <div class="section-head"><div><h2 id="guide-heading">영양소 이름을 알아봐요</h2><p class="sub">활동지에 적힌 여섯 가지 영양소를 짧게 살펴봐요.</p></div></div>
@@ -128,19 +172,19 @@
       <div class="caution"><strong>생각해 볼 점</strong> · 재료의 개수만 세어서는 영양소의 양을 알 수 없어요. 같은 음식도 재료의 양과 조리법에 따라 달라집니다. ‘균형 잡힌 음식’ 판단은 조사한 내용을 바탕으로 이유와 함께 적어 보세요.</div>
     </section>
   </main>
-  <footer><div class="wrap">학습용 재료 예시는 음식마다 달라질 수 있습니다. 자세한 영양성분 수치는 식품의약품안전처 K-FIND 식품영양성분 DB에서 확인하세요. 이름이나 조사 내용은 이 사이트로 전송되지 않습니다.</div></footer>
+  <footer><div class="wrap">이 사이트의 재료 목록과 영양소 분류는 학습용 대표 예시이며 음식의 실제 재료·양에 따라 달라집니다. 정확한 영양성분 함량이 필요할 때는 식품의약품안전처 K-FIND 식품영양성분 DB를 참고하세요. 입력한 내용은 서버로 전송되지 않습니다.</div></footer>
   <script>
     const nutrients = {
-      '밥':['탄수화물'], '쌀':['탄수화물'], '면':['탄수화물'], '밀가루':['탄수화물'], '떡':['탄수화물'], '빵':['탄수화물'], '감자':['탄수화물','비타민'], '당면':['탄수화물'],
-      '소고기':['단백질','지방'], '돼지고기':['단백질','지방'], '닭고기':['단백질','지방'], '달걀':['단백질','지방'], '생선':['단백질','지방'], '새우':['단백질'], '두부':['단백질','지방'], '어묵':['단백질'], '순대':['탄수화물','단백질'], '소시지':['단백질','지방'],
-      '양배추':['비타민','무기질','물'], '양파':['비타민','무기질','물'], '당근':['비타민','무기질','물'], '오이':['비타민','무기질','물'], '시금치':['비타민','무기질','물'], '상추':['비타민','무기질','물'], '파':['비타민','무기질','물'], '콩나물':['비타민','무기질','물'], '버섯':['비타민','무기질','물'], '토마토':['비타민','무기질','물'], '김치':['비타민','무기질','물'], '김':['무기질','비타민'], '애호박':['비타민','무기질','물'],
-      '치즈':['단백질','지방','무기질'], '우유':['단백질','지방','무기질','물'], '기름':['지방'], '된장':['단백질','무기질'], '국물':['물'], '해산물':['단백질','무기질']
+      '밥':['탄수화물'], '쌀':['탄수화물'], '면':['탄수화물'], '밀가루':['탄수화물'], '떡':['탄수화물'], '빵':['탄수화물'], '감자':['탄수화물','비타민'], '당면':['탄수화물'], '고구마':['탄수화물','비타민'], '옥수수':['탄수화물'], '보리':['탄수화물'],
+      '소고기':['단백질','지방'], '돼지고기':['단백질','지방'], '닭고기':['단백질','지방'], '달걀':['단백질','지방'], '생선':['단백질','지방'], '새우':['단백질'], '두부':['단백질','지방'], '어묵':['단백질'], '순대':['탄수화물','단백질'], '소시지':['단백질','지방'], '참치':['단백질','지방'], '오징어':['단백질'], '조개':['단백질','무기질'], '콩':['단백질','탄수화물'], '멸치':['단백질','무기질'],
+      '양배추':['비타민','무기질','물'], '양파':['비타민','무기질','물'], '당근':['비타민','무기질','물'], '오이':['비타민','무기질','물'], '시금치':['비타민','무기질','물'], '상추':['비타민','무기질','물'], '파':['비타민','무기질','물'], '콩나물':['비타민','무기질','물'], '버섯':['비타민','무기질','물'], '토마토':['비타민','무기질','물'], '김치':['비타민','무기질','물'], '김':['무기질','비타민'], '애호박':['비타민','무기질','물'], '브로콜리':['비타민','무기질','물'], '깻잎':['비타민','무기질','물'], '무':['비타민','무기질','물'], '배추':['비타민','무기질','물'], '피망':['비타민','무기질','물'], '고추':['비타민','무기질','물'], '사과':['탄수화물','비타민','물'], '바나나':['탄수화물','비타민','무기질'], '귤':['비타민','물'], '딸기':['비타민','물'],
+      '치즈':['단백질','지방','무기질'], '우유':['단백질','지방','무기질','물'], '기름':['지방'], '된장':['단백질','무기질'], '국물':['물'], '해산물':['단백질','무기질'], '버터':['지방'], '참기름':['지방'], '견과류':['지방','단백질'], '요구르트':['단백질','무기질','물'], '물':['물']
     };
     const foods = [
       ['갈비찜','🍖','소고기,당근,버섯,감자,양파'],['라면','🍜','면,달걀,파,국물'],['김밥','🍙','밥,김,달걀,당근,오이'],['된장찌개','🥘','된장,두부,애호박,양파,국물'],
       ['마라탕','🍲','면,소고기,두부,버섯,양배추,국물'],['불고기','🥩','소고기,양파,버섯,당근'],['수프','🥣','감자,양파,우유,버섯'],['스파게티','🍝','면,토마토,소고기,양파'],
       ['오므라이스','🍳','밥,달걀,당근,양파'],['순대국밥','🍲','순대,돼지고기,밥,파,국물'],['삼겹살','🥓','돼지고기,상추,김치'],['김치찌개','🥘','김치,돼지고기,두부,국물'],
-      ['비빔밥','🍚','밥,달걀,시금치,콩나물,당근'],['돈까스덮밥','🍛','밥,돼지고기,밀가루,달걀,양배추'],['잡채','🍜','당면,소고기,시금치,당근,버섯'],['짬뽕','🍜','면,해산물,양배추,양파,국물'],
+      ['비빔밥','🍚','밥,달걀,시금치,콩나물,당근'],['돈까스','🍖','돼지고기,밀가루,달걀,기름'],['잡채','🍜','당면,소고기,시금치,당근,버섯'],['짬뽕','🍜','면,해산물,양배추,양파,국물'],
       ['짜장면','🍜','면,돼지고기,양파,양배추'],['초밥','🍣','밥,생선,김,오이'],['치킨','🍗','닭고기,밀가루,기름'],['탕수육','🍖','돼지고기,밀가루,양파,당근'],
       ['핫도그','🌭','빵,소시지,양배추'],['피자','🍕','밀가루,치즈,토마토,양파'],['카레','🍛','밥,감자,당근,양파,닭고기'],['떡볶이','🍢','떡,어묵,파,달걀']
     ].map(([name,emoji,items])=>({name,emoji,items:items.split(',')}));
@@ -149,19 +193,59 @@
     function el(tag,attrs={},contents='') { const node=document.createElement(tag); for(const [k,v] of Object.entries(attrs)) { if(k==='class') node.className=v; else node.setAttribute(k,v); } if(contents) node.textContent=contents; return node; }
     function renderFoods() { const query=search.value.trim(); const list=foods.filter(f=>f.name.includes(query)); grid.replaceChildren(); count.textContent=`${list.length}가지 음식`;
       list.forEach(food=>{ const b=el('button',{type:'button',class:'food','aria-pressed':String(selected?.name===food.name)}); b.append(el('span',{class:'emoji','aria-hidden':'true'},food.emoji),el('span',{},food.name)); b.addEventListener('click',()=>choose(food)); grid.append(b); });
-      if(!list.length) grid.append(el('p',{class:'sub'},'목록에 없으면 아래에서 음식 이름을 직접 입력해 보세요.'));
+      if(!list.length) grid.append(el('p',{class:'sub'},'목록에서 찾지 못했어요. 다른 이름으로 검색하거나 24가지 목록에서 골라 주세요.'));
     }
-    function choose(food) { selected=food; renderFoods(); research.className='card'; research.replaceChildren(); const head=el('div',{class:'selected'}); const icon=el('div',{class:'selected-emoji','aria-hidden':'true'},food.emoji); const info=el('div'); info.append(el('h3',{},food.name),el('p',{},food.items?.length?'예시 재료를 눌러 영양소를 확인해 보세요.':'내가 먹는 음식의 재료를 떠올려 직접 조사해 보세요.')); head.append(icon,info); research.append(head);
-      const note=el('div',{class:'notice'},food.items?.length?'아래는 흔히 쓰이는 재료의 예시예요. 실제 음식에 들어간 재료와 양은 다를 수 있으니 내 음식에 맞게 골라 적으세요.':'음식 이름을 자유롭게 골랐어요. 아래 공식 자료에서 음식과 재료를 검색한 뒤 활동지에 적어 보세요.'); research.append(note);
-      const list=el('div',{class:'ingredient-list'}); let nextIngredient=0;
-      function addIngredient(name) { const index=nextIngredient++; const row=el('div',{class:'ingredient'}); const btn=el('button',{type:'button','aria-expanded':'false','aria-controls':`nutrient-${index}`}); btn.append(el('span',{},name),el('span',{class:'arrow'},'영양소 보기 ↓')); const reveal=el('div',{class:'reveal',id:`nutrient-${index}`}); reveal.hidden=true; const known=nutrients[name]; if(known) { const chips=el('div',{class:'chips'}); known.forEach(n=>chips.append(el('span',{class:'chip'},n))); reveal.append(chips,el('p',{class:'small'},'대표적인 영양소를 살펴보는 학습용 예시입니다. 실제 함량은 식품과 조리법에 따라 달라요.')); } else reveal.append(el('p',{class:'small'},'이 재료의 예시 정보는 아직 없어요. 아래 공식 DB에서 검색하고 활동지에 직접 적어 보세요.')); btn.addEventListener('click',()=>{ reveal.hidden=!reveal.hidden; btn.setAttribute('aria-expanded',String(!reveal.hidden)); btn.lastChild.textContent=reveal.hidden?'영양소 보기 ↓':'접기 ↑'; }); row.append(btn,reveal); list.append(row); }
-      (food.items||[]).forEach(addIngredient); research.append(list);
-      const addForm=el('form',{class:'add-ingredient'}), addLabel=el('label',{for:'ingredient-input'},'내 음식에 들어간 다른 재료'), addInput=el('input',{id:'ingredient-input',type:'text',maxlength:'25',placeholder:'예: 두부'}), addButton=el('button',{type:'submit'},'재료 추가'); addForm.append(addLabel,addInput,addButton); addForm.addEventListener('submit',event=>{event.preventDefault(); const name=addInput.value.trim(); if(!name) {addInput.focus();return;} addIngredient(name); addInput.value='';addInput.focus();}); research.append(addForm);
-      const links=el('div',{class:'source-links'}); const a=el('a',{href:'https://www.foodsafetykorea.go.kr/fcdb/detail/search/list.do',target:'_blank',rel:'noopener noreferrer'},'식품의약품안전처 K-FIND에서 자세히 찾기 ↗'); links.append(a); research.append(links); research.scrollIntoView({behavior:'smooth',block:'start'});
+    function choose(food, scroll=true) {
+      selected=food; renderFoods(); research.className='card'; research.replaceChildren();
+      const head=el('div',{class:'selected'}), icon=el('div',{class:'selected-emoji','aria-hidden':'true'},food.emoji), info=el('div');
+      info.append(el('h3',{},`${food.name}의 재료와 주요 영양소`),el('p',{},'아래 표에서 내 음식에 실제 들어간 재료를 골라 보세요.'));
+      head.append(icon,info); research.append(head);
+      research.append(el('div',{class:'notice'},food.items.length?'흔히 쓰는 재료 예시를 먼저 넣어 두었어요. 내가 먹는 음식과 다르면 체크를 해제하거나 재료를 더해 주세요.':'아래 칸에 내가 먹는 음식의 재료를 하나씩 입력해 보세요.'));
+      const table=el('table',{class:'worksheet-table'}), thead=el('thead'), headings=el('tr');
+      ['선택','재료','주요 영양소'].forEach(label=>headings.append(el('th',{scope:'col'},label)));
+      thead.append(headings); const tbody=el('tbody'); table.append(thead,tbody); research.append(table);
+      const copyPanel=el('div',{class:'copy-panel'}), copyTitle=el('h4',{},'활동지에 옮겨 적을 내용'), copyTip=el('p',{},'내 음식에 들어간 재료를 골라 보세요.'), chosenList=el('ol');
+      copyPanel.append(copyTitle,copyTip,chosenList);
+      function updateSummary() {
+        chosenList.replaceChildren();
+        for(const row of tbody.querySelectorAll('tr')) {
+          const included=row.querySelector('.include').checked;
+          row.classList.toggle('not-used',!included);
+          if(!included) continue;
+          const name=row.dataset.name, known=nutrients[name];
+          const labels=known||Array.from(row.querySelectorAll('.nutrient-choice:checked')).map(box=>box.value);
+          chosenList.append(el('li',{},`${name} — ${labels.length?labels.join(', '):'영양소 조사하기'}`));
+        }
+        copyTip.textContent=chosenList.children.length?`선택한 재료 ${chosenList.children.length}가지 · 활동지 표에 적어 보세요.`:'아직 고른 재료가 없어요. 표에서 체크해 보세요.';
+      }
+      function addIngredient(name) {
+        const row=el('tr',{'data-name':name}), chooseCell=el('td'), ingredientCell=el('td',{},name), nutrientCell=el('td');
+        const include=el('input',{type:'checkbox',class:'include','aria-label':`${name} 사용하기`}); include.checked=true;
+        include.addEventListener('change',updateSummary); chooseCell.append(include);
+        const chips=el('div',{class:'chips'}), known=nutrients[name];
+        if(known) known.forEach(n=>chips.append(el('span',{class:'chip'},n)));
+        else {
+          nutrientCell.append(el('p',{class:'small'},'사전에 없는 재료예요. 확인한 영양소를 표시하세요.'));
+          ['탄수화물','단백질','지방','비타민','무기질','물'].forEach(n=>{
+            const label=el('label',{class:'chip'}), box=el('input',{type:'checkbox',class:'nutrient-choice',value:n,'aria-label':`${name}의 주요 영양소 ${n}`});
+            box.addEventListener('change',updateSummary); label.append(box,document.createTextNode(` ${n}`)); chips.append(label);
+          });
+        }
+        nutrientCell.append(chips); row.append(chooseCell,ingredientCell,nutrientCell); tbody.append(row); updateSummary();
+      }
+      food.items.forEach(addIngredient);
+      const addForm=el('form',{class:'add-ingredient'}), addLabel=el('label',{for:'ingredient-input'},'다른 재료 추가'), addInput=el('input',{id:'ingredient-input',type:'text',maxlength:'25',list:'ingredient-options',placeholder:'예: 두부'}), addButton=el('button',{type:'submit'},'표에 추가');
+      const options=el('datalist',{id:'ingredient-options'}); Object.keys(nutrients).forEach(name=>options.append(el('option',{value:name})));
+      addForm.append(addLabel,addInput,addButton,options);
+      addForm.addEventListener('submit',event=>{event.preventDefault(); const name=addInput.value.trim(); if(!name) {addInput.focus();return;} addIngredient(name); addInput.value='';addInput.focus();});
+      research.append(addForm,copyPanel);
+      if(scroll) research.scrollIntoView({behavior:'smooth',block:'start'});
     }
     search.addEventListener('input',renderFoods);
-    document.getElementById('custom-form').addEventListener('submit',event=>{event.preventDefault(); const name=document.getElementById('custom').value.trim(); if(!name) {document.getElementById('custom').focus(); return;} const existing=foods.find(f=>f.name===name); choose(existing||{name,emoji:'🍽️',items:[]}); });
-    renderFoods();
+    const ingredientSearch=document.getElementById('ingredient-search'), ingredientResults=document.getElementById('ingredient-results'), ingredientCount=document.getElementById('ingredient-count');
+    function renderIngredients() { const query=ingredientSearch.value.trim(); const names=Object.keys(nutrients).sort((a,b)=>a.localeCompare(b,'ko')).filter(name=>name.includes(query)); ingredientCount.textContent=`${names.length}가지 재료`; ingredientResults.replaceChildren(); names.forEach(name=>{ const card=el('div',{class:'ingredient-fact'}); card.append(el('strong',{},name)); const chips=el('div',{class:'chips'}); nutrients[name].forEach(n=>chips.append(el('span',{class:'chip'},n))); card.append(chips); ingredientResults.append(card); }); if(!names.length) ingredientResults.append(el('p',{class:'sub'},'아직 없는 재료예요. 선생님과 자료를 확인한 뒤 활동지에 적어 보세요.')); }
+    ingredientSearch.addEventListener('input',renderIngredients);
+    renderIngredients(); choose(foods[2],false);
   </script>
 </body>
 </html>
